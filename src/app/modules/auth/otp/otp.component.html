@@ -1,0 +1,76 @@
+<!-- component -->
+  <div class="relative flex flex-col justify-center bg-white px-6 pt-10 pb-9 shadow-xl mx-auto w-full max-w-lg rounded-2xl">
+    <i class="fa-solid fa-xmark absolute right-6 top-6 cursor-pointer hover:text-red-600 text-[1.3rem]" (click)="otpCancelled.emit()"></i>
+    <div class="mx-auto flex w-full max-w-md flex-col space-y-16">
+      <div class="flex flex-col items-center justify-center text-center space-y-2">
+        <div class="font-semibold text-3xl">
+          <p>Email Verification</p>
+        </div>
+        <div class="flex flex-row text-sm font-medium text-gray-400">
+          <p>We have sent a code to your email {{emailName}}</p>
+        </div>
+      </div>
+
+      <div>
+        <form (ngSubmit)="onSubmit()">
+          <div class="flex flex-col space-y-16">
+            <div class="flex flex-row items-center justify-center mx-auto w-full max-w-xs space-x-2 ">
+                <input 
+                class="otp-input text-center outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700 w-14 h-14"
+                type="text"
+                #input1
+                maxlength="1"
+                (keyup)="handleKeyUp($event, input2)"
+                (keydown)="handleKeyDown($event, input1)"
+                name="inputOtp"
+                [(ngModel)]="input01"
+                required>
+
+                <input class="otp-input text-center outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700  w-14 h-14"
+                type="text" 
+                #input2
+                maxlength="1"
+                (keyup)="handleKeyUp($event, input3)"
+                (keydown)="handleKeyDown($event, input2)"
+                name="inputOtp"
+                [(ngModel)]="input02"
+                required>
+
+                <input class="otp-input text-center outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700  w-14 h-14" 
+                type="text" 
+                #input3
+                maxlength="1"
+                (keyup)="handleKeyUp($event, input4)"
+                (keydown)="handleKeyDown($event, input3)"
+                name="inputOtp"
+                [(ngModel)]="input03"
+                required>
+
+                <input class="otp-input text-center outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700  w-14 h-14" 
+                type="text" 
+                #input4
+                maxlength="1"
+                (keyup)="handleKeyUp($event, null)"
+                (keydown)="handleKeyDown($event, input4)"
+                name="inputOtp"
+                [(ngModel)]="input04"
+                >
+            </div>
+
+            <div class="flex flex-col space-y-5">
+              <div>
+                <button type="submit" class="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-4 bg-blue-700 border-none text-white text-sm shadow-sm" >
+                  Verify Account
+                </button>
+              </div>
+
+              <div class="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
+                <p>Didn't recieve code?</p>
+                <a class="text-blue-600" href="">Resend</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
