@@ -4,29 +4,40 @@ import { SignupComponent } from "./signup/signup.component";
 import { OtpComponent } from "./otp/otp.component";
 import {  provideClientHydration } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AuthRoutingModule } from "./auth-routing.module";
-import { HeaderComponent } from "src/app/shared/components/header/header.component";
 import { CommonModule } from "@angular/common";
+import { TokenInterceptor } from "src/app/services/auth/token.interceptor";
+
+import { SharedModule } from "src/app/shared/shared.module";
+
+
 
 @NgModule({
   declarations: [
     LoginComponent,
     SignupComponent,
     OtpComponent,
-    HeaderComponent
+    
   ],
   imports: [
+    // PatientModule,
     AuthRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule, 
+    SharedModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
-  bootstrap: [LoginComponent]
+  bootstrap: [LoginComponent],
   
 })
 export class AuthModule {}

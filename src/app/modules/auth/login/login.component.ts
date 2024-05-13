@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordMatchValidator } from '../../../../utils/validator/password-validator';
-import { AuthenticationService } from '../../../services/authentication.service';
+import { AuthenticationService } from '../../../services/auth/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +13,9 @@ export class LoginComponent implements OnInit {
   userType!: 'Doctor' | 'Patient'; //userType as union type to make sure the value is either "Doctor" or "Patient".
   loginForm!: FormGroup
   errorMsg!: string
+  emailName!:string
+  userId!: string
+  showOtpComponent: boolean = false
 
   constructor(
     private route: ActivatedRoute,
@@ -42,11 +45,20 @@ export class LoginComponent implements OnInit {
           //Handle successfull login
           const jwtToken = response.token
           localStorage.setItem('token', jwtToken) //setting jwt token in local storage for subsequent request authentication
-          this.router.navigate(['patient-page'])
+          console.log(response);
+          
+          if(response.email) {
+            this.emailName = response.email;//assigning the email to emailName to pass to otp page
+            this.userId = response.userId
+            this.showOtpComponent = true
+          }
+          this.router.navigate([`/home/${this.userType}`])
         },
         error => {
           console.error(error);
           this.errorMsg = error.error.message
+
+          
         }
       )
   }
@@ -56,5 +68,37 @@ export class LoginComponent implements OnInit {
     const currentValue = this.loginForm.get('rememberMe')?.value
     this.loginForm.get('rememberMe')?.setValue(!currentValue)
   }
+
+  //function for closing the otp tab if user clicks on close button
+  onOtpClose(event:string){
+    this.showOtpComponent = false
+  }
+
+  onOtpSubmitted(event:string){
+    const otpValue: string = event
+
+    //send the otp to server to verification
+    this.authService.verifyOtp(otpValue, this.userId)
+      .subscribe(
+        (response) => {
+          //Handle successfull otp verification
+          const jwtToken = response.token //server returns a jwt token          
+          localStorage.setItem('token', jwtToken)//setting jwt token in local storage for subsequent request authentication
+          this.showOtpComponent = false //removing the otp component from the view
+          
+          //redirect to home page
+          if (this.userType === 'Patient') {
+            this.router.navigate([`/home/${this.userType}`])
+          } else {
+            this.router.navigate([`/home/${this.userType}`])
+          }
+        },
+        (error) => {
+          //Handle OTP  verification error
+          alert('Wrong OTP Entered')
+        } 
+      )
   
+  }
+
 }
