@@ -1,0 +1,17 @@
+.animated-icon {
+  position: relative;
+  animation: shadow-pulse 2s infinite;
+  border-radius: 50%;
+}
+
+@keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(56, 247, 2, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(56, 247, 2, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(56, 247, 2, 0);
+  }
+}

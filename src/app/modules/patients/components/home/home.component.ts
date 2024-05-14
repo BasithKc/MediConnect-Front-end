@@ -1,11 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { Diseases } from "../../models/diseases";
-import { DiseaseService } from "src/app/services/home/disease-service";
+import { DiseaseService } from "src/app/modules/patients/services/disease-service";
 
 @Component({
   selector: 'app-patient-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
+
 
 export class PatientHomeComponent implements OnInit{
   diseases!: Diseases[]

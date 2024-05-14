@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { CommonModule } from "@angular/common";
-import { TokenInterceptor } from "src/app/services/auth/token.interceptor";
+import { TokenInterceptor } from "src/app/modules/auth/services/token.interceptor";
 
 import { SharedModule } from "src/app/shared/shared.module";
 
