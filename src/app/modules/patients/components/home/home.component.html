@@ -1,11 +1,14 @@
 <section class="relative p-0 ">
-    <div class="absolute top-0 w-full">
+    <div class="absolute top-0 w-full text-white bg-slate-200">
         <app-header></app-header> 
       </div>
-    <div style="background: rgb(255,255,255);
-    background: linear-gradient(18deg, rgba(255,255,255,0.927608543417367) 0%, rgba(242,208,149,1) 56%, rgba(242,235,223,0.7595413165266106) 98%);" class="relative flex  items-center min-h-[80vh] w-full lg:pl-56 sm:pl-36 sm:w-full xs:pl-36 min-w-[100%]">
-        <div class="z-10 font-semibold">
-            <h1 class="text-violet-950 text-5xl ">Consult a Doctor <br>anytime, anywhere <br>by <span class="underline-offset-2 text-violet-800"><u>video call</u></span></h1>
+    <div  class="relative flex  items-center h-[100vh] min-h-[100vh] w-full bg-violet-950 sm:w-full min-w-[100%] video-bg overflow-hidden">
+        <video autoplay muted loop 
+        class="w-full absolute">
+            <source src="../../../../../assets/images/videoplayback.webm">
+        </video>
+        <div class="z-10 font-semibold pl-36">
+            <h1 class="text-white text-5xl ">Consult a Doctor <br>anytime, anywhere <br>by <span class="underline-offset-2 text-yellow-300"><u>video call</u></span></h1>
             
             <p class="mt-10">Let's find your specialist</p>
             <div class="relative mt-2  w-full sm:w-full">
@@ -17,16 +20,16 @@
                 <input type="text" id="search-navbar" class="w-full  p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Dieseases, Doctors...">
             </div>
         </div>
-        <div class="absolute bottom-50 right-1/3 bg-white rounded-lg text-violet-950 p-3 font-bold flex items-center gap-3">
+        <div class="absolute bottom-50 right-1/3 bg-white rounded-lg text-violet-950 p-3 font-bold flex items-center gap-3 sm:hidden lg:flex">
             <i class="fa-solid fa-circle text-[10px] animated-icon" style="color: #38f702;"></i> <p>2110 Doctors Online</p>
         </div>
-        <img class="absolute bottom-0 right-0 lg:opacity-95 sm:opacity-75 xs:opacity-75 h-[80%]" src="../../../../../assets/images/freepik-export-20240513115338P7dn.png" alt="">
+        <img class="absolute bottom-0 right-0 lg:opacity-95 sm:opacity-55  h-[80%]" src="../../../../../assets/images/freepik-export-20240513115338P7dn.png" alt="">
     </div>
     <section class="font-bold px-[100px] mt-20">
         <div class="w-full">
             <h1 class="text-center lg:text-5xl md:text-4xl  sm:text-3xl font-semibold text-violet-950 leading-[60px]">Why you should trust us? <br>Get know about us</h1>
 
-            <div class="flex gap-20 mt-20 overflow-x-scroll">
+            <div class="flex gap-20 mt-20 overflow-x-scroll  mb-10">
                 <div class="bg-slate-50 rounded-lg w-[300px] min-w-[250px] flex flex-column items-center  p-3 text-violet-950">
                     <div class="flex justify-center">
                         <img src="../../../../../assets/images/doctor.jpg" class="rounded-full w-[25%]" alt="">
@@ -69,9 +72,11 @@
             </div>
         </div>
         
-        <div class="w-full bg-lime-50 text-center mt-20">    
-            <p class="text-5xl">Our Consulting Specialities</p>  
-            <p>Ask a doctor online and get quick medical advice for your health queries. Our medical panel consists of over 3500+ doctors 80+ specialities</p>   
+    </section>
+    <section class="w-full ">
+        <div class="w-full bg-lime-50 text-center mt-20 text-violet-950 p-12 flex flex-col items-center justify-center">    
+            <p class="lg:text-4xl font-semibold sm:text-3xl">Our Consulting Specialities</p>  
+            <p class="lg:w-2/4 sm:w-full flex justify-center mt-8">Ask a doctor online and get quick medical advice for your health queries. Our medical panel consists of over 3500+ doctors 80+ specialities</p>   
             <app-disease-card [diseases]="diseases"></app-disease-card>
         </div>
     </section>
