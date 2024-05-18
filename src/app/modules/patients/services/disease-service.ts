@@ -90,7 +90,6 @@ export class DiseaseService {
   //Get a disease by passing id from query params
   getDiseaseById (id: number) {   
     const disease =  this.diseases.find(disease => disease.id === id)
-    console.log(disease);
     if(disease) {
       return disease //return the object of disease
     } else {

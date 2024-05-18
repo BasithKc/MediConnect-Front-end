@@ -1,15 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Diseases } from "../../models/diseases";
-import { DiseaseService } from "../../services/disease-service";
+import { ActivatedRoute, Router } from "@angular/router";
+
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { VerifyService } from "../../../services/verify.service";
+import { DiseaseService } from "../../../services/disease-service";
+import { Diseases } from "../../../models/diseases";
 
 @Component({
-  selector: 'app-consult',
-  templateUrl: './consult-component.html'
+  selector: 'app-consult-verify',
+  templateUrl: './verify-component.html'
 })
 
-export class ConsultComponent implements OnInit{
+export class ConsultVerifyComponent implements OnInit{
   currentIndex = 0;
   consultForm! : FormGroup
   //divs of changing banners in the template
@@ -31,35 +33,47 @@ export class ConsultComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private diseaseService: DiseaseService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private verifyService: VerifyService,
+    private router: Router
   ) {
     setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.divs.length
     },2000)
   }
 
-  disease!: Diseases| undefined | null
-
+  disease!: Diseases | null
+  id!: string
 
  //access the disease using id
  ngOnInit(): void {
   //extracting the id from queryparams
     this.route.queryParams.subscribe((query) => { 
-      const id:string = query['id']
+      this.id = query['id']
       
-     this.disease =  this.diseaseService.getDiseaseById(Number(id))
+     this.disease =  this.diseaseService.getDiseaseById(Number(this.id))
      
     })
 
     //Creating a form validation 
     this.consultForm = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]]
     })
   }
 
-  onSubmit() {
+  onSubmit() {    
     //sending a request to backend for number verification
-    
+    this.verifyService.verifyEmail(this.consultForm.value, this.disease).subscribe(
+      (response) => {
+        console.log('successfull');
+        this.router.navigate(['/consult/direct/payment'], {
+          queryParams: {id: this.id }
+        })
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
   }
 }

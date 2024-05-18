@@ -1,0 +1,44 @@
+<section class="px-[100px]  bg-gray-100 p-10 w-full h-full flex justify-center">
+  <div class="flex items-center justify-between bg-white p-8 w-[75%] ">
+    <div class="lg:w-[50%] sm:w-full">
+      <h1 class="text-3xl font-semibold">Consult with a Doctors</h1>  
+      
+      <form [formGroup]="consultForm" class="flex flex-col gap-8 mt-10" (ngSubmit)="onSubmit()">
+        <div class="flex flex-col">
+
+          <label for="speciality">Speciality</label>
+          <div class="border-2 border-green-300 p-2 flex items-center gap-2 max-w-[70%]">
+            <i class="fa-solid fa-circle-check" style="color: #11e30d;"></i>
+            <p>{{disease?.name}}</p> 
+            <p>₹250</p>
+          </div>
+        </div>
+        <div class="flex flex-col ">           
+          <label for="name">Patient name</label>
+          <input type="text" id="name" class="border-2 p-2" placeholder="Enter patient name for prescription" formControlName="name">
+        </div>
+        <div class="flex flex-col">           
+          <label for="name">Email</label>
+          <input type="text" id="number" class="border-2 p-2" placeholder="Enter email" formControlName="email">
+          <p class="text-slate-400 text-left">A verification code will be send to this email</p>
+        </div>
+        <button type="submit" [disabled]="consultForm.invalid"  class="bg-blue-500 text-white p-2 rounded-md">Continue</button>
+      </form>
+    </div>
+
+    <div class="lg:block sm:hidden lg:w-[50%]">
+      <div *ngIf="currentIndex === 0" class="flex flex-col justify-center items-center">
+        <img [src]="divs[0].imageSrc" alt="">
+        <p class="text-xl font-semibold">{{divs[0].text}}</p>
+      </div>
+      <div *ngIf="currentIndex === 1" class="flex flex-col justify-center items-center">
+        <img [src]="divs[1].imageSrc" alt="">
+        <p class="text-xl font-semibold">{{divs[1].text}}</p>
+      </div>
+      <div *ngIf="currentIndex === 2" class="flex flex-col justify-center items-center">
+        <img [src]="divs[2].imageSrc" alt="">
+        <p class="text-xl font-semibold">{{divs[2].text}}</p>
+      </div>
+    </div>
+  </div>
+</section>
