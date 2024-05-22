@@ -2,6 +2,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { PatientHomeComponent } from "./components/home/home.component";
 import { NgModule } from "@angular/core";
 import { ConsultVerifyComponent } from "./components/consult/verify/verify-component";
+import { ConsultPaymentComponent } from "./components/consult/payment/payment-component";
 
 
 const routes :Routes = [
@@ -9,8 +10,8 @@ const routes :Routes = [
   {
     path: 'consult/direct',
     children:[
-      {path: '/new_consultation', component: ConsultVerifyComponent},
-      {path: 'payment'}
+      {path: 'new_consultation', component: ConsultVerifyComponent},
+      {path: 'payment', component: ConsultPaymentComponent}
     ]
   }
 ]

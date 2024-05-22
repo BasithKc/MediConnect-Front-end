@@ -63,17 +63,18 @@ export class ConsultVerifyComponent implements OnInit{
   }
 
   onSubmit() {    
+    this.router.navigate(['/consult/direct/payment'], {
+      queryParams: {id: this.id }
+    })
     //sending a request to backend for number verification
-    this.verifyService.verifyEmail(this.consultForm.value, this.disease).subscribe(
-      (response) => {
-        console.log('successfull');
-        this.router.navigate(['/consult/direct/payment'], {
-          queryParams: {id: this.id }
-        })
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
+    // this.verifyService.verifyEmail(this.consultForm.value, this.disease).subscribe(
+    //   (response) => {
+    //     console.log('successfull');
+        
+    //   },
+    //   (error) => {
+    //     console.log(error)
+    //   }
+    // )
   }
 }

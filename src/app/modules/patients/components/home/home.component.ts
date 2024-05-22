@@ -11,7 +11,7 @@ import { DiseaseService } from "src/app/modules/patients/services/disease-servic
 
 export class PatientHomeComponent implements OnInit{
   diseases!: Diseases[]
-
+  imgSrc = '../../../../../assets/images/freepik-export-20240513115338P7dn.png'
   constructor(private diseaseService: DiseaseService){}
 
   ngOnInit(): void {

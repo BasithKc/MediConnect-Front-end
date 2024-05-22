@@ -1,0 +1,54 @@
+<section class="px-[100px]  bg-gray-100 p-10 w-full h-full flex justify-center">
+  <div class="flex items-center justify-between bg-white p-8 w-[75%] ">
+    <div class="lg:w-[50%] sm:w-full flex flex-col gap-3">
+      <h1 class="text-3xl font-semibold">Confirm & pay</h1>  
+      <div class="flex flex-col gap-3 text-lg">
+
+        <p>Verified Psychiatrists online now  <i class="fa-solid fa-circle ml-1 text-[10px] animated-icon" style="color: #38f702;"></i> </p>
+  
+        <div class="flex items-center relative">
+          <div>
+            <img src="../../../../../../assets/images/doctors/1.jfif" class="rounded-full w-[50px] h-[50px]  z-10 " alt="">
+          </div>
+          <div>
+            <img src="../../../../../../assets/images/doctors/2.jfif" class="rounded-full w-[50px] h-[50px]  z-9" alt="">
+          </div>
+          <div>
+            <img src="../../../../../../assets/images/doctors/3.jfif" class="rounded-full w-[50px] h-[50px]  z-8" alt="">
+          </div>
+          <div>
+            <img src="../../../../../../assets/images/doctors/4.jfif" class="rounded-full w-[50px] h-[50px]  z-7" alt="">
+          </div>
+          <p>+100</p>
+        </div>
+        <p>One of them will speak to you shortly.</p>
+      </div>
+      
+      <div class="flex items-center ">
+        <img src="../../../../../../assets/images/doctors/tip-icon-v1.webp" class="w-[20px]" alt="">
+        <p class="text-md">93% of users found online consultation helpful</p>
+      </div>
+
+      <form [formGroup]="paymentForm" class="flex flex-col gap-3" (ngSubmit)="paymentSubmit()">
+        <div class="flex flex-col">
+
+          <label for="" class="text-lg">Patients name</label>
+          <input type="text" name="name" class="border-2 p-2" formControlName="name" >
+        </div>
+        <p>Final Fee</p>
+        <p class="text-2xl font-bold">₹250</p>
+        <button type="submit" mat-flat-button color="primary" class="p-3" type="text">Continue to payment</button>
+      </form>
+    </div>
+
+    <hr class="w-[1px] h-[90%] bg-slate-300 ml-10">
+    <div class="lg:block sm:hidden sm:hidden lg:flex lg:w-[50%] flex flex-col items-center justify-center text-center">
+      <div class="flex justify-center">
+
+        <img src="../../../../../../assets/images/affordable-money-v1.svg" alt="">
+      </div>
+      <p class="font-bold text-lg">3x more affordable!</p>
+      <p class="text-md w-[50%]">Get affordable healthcare online, with fees upto 3 times lesser than in clinic fees.</p>
+    </div>
+  </div>
+</section>

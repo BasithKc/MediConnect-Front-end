@@ -9,6 +9,10 @@ import { provideClientHydration } from "@angular/platform-browser";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { ConsultVerifyComponent } from "./components/consult/verify/verify-component";
+import { ConsultPaymentComponent } from "./components/consult/payment/payment-component";
+import { LazyLoadImageModule } from "ng-lazyload-image";
+import { NgxStripeModule } from "ngx-stripe";
+import { environment } from "src/environments/environment";
 
 
 @NgModule({
@@ -19,12 +23,15 @@ import { ConsultVerifyComponent } from "./components/consult/verify/verify-compo
     ConsultVerifyComponent,
   ],
   imports: [
+    ConsultPaymentComponent,
     PatinetsRoutingModule,
     CommonModule,
     AuthModule,
     SharedModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    LazyLoadImageModule,
+    NgxStripeModule.forRoot(environment.stripe.publicKey)
   ],
   providers: [
     provideClientHydration(),
