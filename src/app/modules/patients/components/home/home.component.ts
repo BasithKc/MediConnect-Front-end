@@ -16,7 +16,7 @@ export class PatientHomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.diseaseService.getDieseases().subscribe(disease => {
-      console.log(disease);
+
       
       this.diseases = disease
     })

@@ -11,8 +11,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { ConsultVerifyComponent } from "./components/consult/verify/verify-component";
 import { ConsultPaymentComponent } from "./components/consult/payment/payment-component";
 import { LazyLoadImageModule } from "ng-lazyload-image";
-import { NgxStripeModule } from "ngx-stripe";
-import { environment } from "src/environments/environment";
 
 
 @NgModule({
@@ -31,7 +29,6 @@ import { environment } from "src/environments/environment";
     ReactiveFormsModule,
     HttpClientModule,
     LazyLoadImageModule,
-    NgxStripeModule.forRoot(environment.stripe.publicKey)
   ],
   providers: [
     provideClientHydration(),

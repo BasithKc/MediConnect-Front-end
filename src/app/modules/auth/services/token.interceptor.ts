@@ -7,6 +7,9 @@ import { Observable } from "rxjs";
 })
 
 export class TokenInterceptor implements HttpInterceptor {
+
+  private userInfo: any;
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Add the JWT token to the Authorization header
     const token = localStorage.getItem('token');
@@ -15,7 +18,9 @@ export class TokenInterceptor implements HttpInterceptor {
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
+        
       })
+
     }
     return next.handle(req)
   }

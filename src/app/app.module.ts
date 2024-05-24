@@ -19,7 +19,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

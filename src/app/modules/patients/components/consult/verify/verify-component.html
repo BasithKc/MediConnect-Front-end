@@ -1,4 +1,12 @@
 <section class="px-[100px]  bg-gray-100 p-10 w-full h-full flex justify-center">
+  <!-- OTP overlay -->
+  <div class="absolute w-full top-20 bottom-0 left-0 py-5 right-0 flex items-center justify-center bg-black bg-opacity-20  z-50" *ngIf="showOtpComponent">
+    <app-otp
+    (otpCancelled)="onOtpClose($event)"
+    (otpSubmited)="onOtpSubmitted($event)"
+    [emailName]="emailName"
+    ></app-otp>
+  </div> 
   <div class="flex items-center justify-between bg-white p-8 w-[75%] ">
     <div class="lg:w-[50%] sm:w-full">
       <h1 class="text-3xl font-semibold">Consult with a Doctors</h1>  
@@ -7,19 +15,32 @@
         <div class="flex flex-col">
 
           <label for="speciality">Speciality</label>
-          <div class="border-2 border-green-300 p-2 flex items-center gap-2 max-w-[70%]">
+          <div class="border-2 border-green-300 p-2 flex items-center gap-3 max-w-[70%]">
             <i class="fa-solid fa-circle-check" style="color: #11e30d;"></i>
-            <p>{{disease?.name}}</p> 
-            <p>₹250</p>
+            <div >{{disease?.name}}</div> 
+            <div>₹250</div>
           </div>
         </div>
         <div class="flex flex-col ">           
           <label for="name">Patient name</label>
-          <input type="text" id="name" class="border-2 p-2" placeholder="Enter patient name for prescription" formControlName="name">
+          <input 
+            type="text" 
+            id="name" 
+            class="border-2 p-2" 
+            placeholder="Enter patient name for prescription" 
+            formControlName="name"
+            [ngModel]= "user?.name || ''"
+            >
         </div>
         <div class="flex flex-col">           
           <label for="name">Email</label>
-          <input type="text" id="number" class="border-2 p-2" placeholder="Enter email" formControlName="email">
+          <input 
+            type="text" 
+            id="number" 
+            class="border-2 p-2" 
+            placeholder="Enter email" 
+            formControlName="email"
+            [ngModel]= "user?.email || ''">
           <p class="text-slate-400 text-left">A verification code will be send to this email</p>
         </div>
         <button type="submit" [disabled]="consultForm.invalid"  class="bg-blue-500 text-white p-2 rounded-md">Continue</button>

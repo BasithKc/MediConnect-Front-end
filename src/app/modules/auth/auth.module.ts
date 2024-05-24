@@ -21,14 +21,14 @@ import { SharedModule } from "src/app/shared/shared.module";
     
   ],
   imports: [
-    // PatientModule,
+    SharedModule,
     AuthRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    CommonModule, 
-    SharedModule
+    CommonModule,     
   ],
+  exports:[OtpComponent],
   providers: [
     provideClientHydration(),
     {
