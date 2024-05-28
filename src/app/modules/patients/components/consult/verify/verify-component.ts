@@ -73,9 +73,9 @@ export class ConsultVerifyComponent implements OnInit{
       email: ['', [Validators.required, Validators.email]]
     })
     
-    this.userService.userInfo$.subscribe(userInfo => {
-      this.user = userInfo
-      console.log(this.user);
+    //get the existing user details if exist
+    this.userService.userInfo$.subscribe((userInfo: any) => {
+      this.user = userInfo.user
       
     })
   
@@ -117,11 +117,31 @@ export class ConsultVerifyComponent implements OnInit{
     this.authService.verifyOtp(otpValue, this.userId)
       .subscribe(
         (response) => {
+          console.log(response);
+          
           //Handle successfull otp verification
           const jwtToken = response.token //server returns a jwt token          
           localStorage.setItem('token', jwtToken)//setting jwt token in local storage for subsequent request authentication
+
+          //updating the user info
+          this.userService.getUserInfo().subscribe(
+            res => {
+              console.log('user updated');
+              
+            }
+          )
+           //get the user details
+          this.userService.userInfo$.subscribe((userInfo :any) => {      
+            this.user = userInfo.user
+            
+          })
+
           this.showOtpComponent = false //removing the otp component from the view
 
+          //navigating to the payment page after verifying successfull
+          this.router.navigate(['/consult/direct/payment'], {
+          queryParams: {id: this.id }
+      })
         },
         (error) => {
           //Handle OTP  verification error

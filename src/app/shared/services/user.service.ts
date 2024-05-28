@@ -16,11 +16,10 @@ export class UserService {
 
   getUserInfo(): Observable<User> {
     const token = localStorage.getItem('token')
-
     if (token) {
       const headers = { 'Authorization': `${token}` };
       return this.http.post<User>(`${this.baseUrl}/auth/me`, {headers}).pipe(
-        tap((user: User) => {
+        tap((user) => {
           this.userInfoSubject.next(user)
         })
       )

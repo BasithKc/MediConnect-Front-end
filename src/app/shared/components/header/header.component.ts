@@ -13,9 +13,15 @@ export class HeaderComponent implements OnInit{
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    this.userService.getUserInfo().subscribe(
+      (res) => {
+        console.log('successull');       
+      }
+    )
     //get the user details
-    this.userService.userInfo$.subscribe(userInfo => {
-      this.user = userInfo
+    this.userService.userInfo$.subscribe((userInfo :any) => {      
+      this.user = userInfo.user
+      
     })
     
   }
