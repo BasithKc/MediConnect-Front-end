@@ -13,6 +13,7 @@ import { ConsultPaymentComponent } from "./components/consult/payment/payment-co
 import { LazyLoadImageModule } from "ng-lazyload-image";
 import { videoHomeComponent } from "./components/consult/call-video-chat/home/video-home.component";
 import { VideoRoomComponent } from "./components/consult/call-video-chat/room/room-component";
+import { PatientLayoutComponent } from "./components/layout/patient-layout";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { VideoRoomComponent } from "./components/consult/call-video-chat/room/ro
     PatientHomeComponent,
     DiseaseComponent,
     ConsultVerifyComponent,
-    VideoRoomComponent
+    VideoRoomComponent,
+    PatientLayoutComponent
   ],
   imports: [
     videoHomeComponent,

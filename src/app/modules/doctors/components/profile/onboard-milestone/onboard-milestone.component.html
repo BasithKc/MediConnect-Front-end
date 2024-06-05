@@ -1,0 +1,28 @@
+<div class="pl-[70px] p-[30px] bg-[#eee] border-b-2 border-black">
+
+  <p class="text-3xl ">Profile</p>
+</div>
+
+<div class="pl-[110px] p-[50px] flex">
+  <div class="lg:w-[40%] sm:w-[100%] text-[16px]">
+
+    <p class="text-2xl font-semibold">Great Progress!</p>
+    <p>Your profile is just few steps away from going live.</p>
+    <div class="flex flex-col gap-[1px] border-b-2 py-5">  
+      <div class="text-sm">Section A: Profile details</div>
+      <div>Doctor’s basic details, medical registration, education qualification, establishment details etc.</div>
+      <button [routerLink]="['/partners/onboard']" class="bg-orange-400 text-white rounded-sm p-2 w-[150px] mt-2">Continue</button>
+    </div>
+    <div class="flex flex-col gap-[1px] border-b-2 py-5 text-slate-500">  
+      <div class="text-sm">Section B: Profile verification</div>
+      <div>Doctor identity proof, registration proof, establishment ownership proof etc.</div>
+    </div>
+    <div class="flex flex-col gap-[1px] border-b-2 py-5 text-slate-500">  
+      <div class="text-sm">Step C: Start getting patients</div>
+      <div>Location, Timings, Fees</div>
+    </div>
+  </div>
+  <div class="lg:w-[60%] lg:flex sm:hidden flex items-center justify-center" >
+    <img class="w-3/4" src="../../../../../assets/images/doctor_details.webp" alt="">
+  </div>
+</div>

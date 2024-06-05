@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { VerifyService } from "../../../services/verify.service";
-import { DiseaseService } from "../../../services/disease-service";
-import { Diseases } from "../../../models/diseases";
+import { DiseaseService } from "../../../../../shared/services/disease-service";
+import { Diseases } from "../../../../../shared/models/diseases";
 import { UserService } from "src/app/shared/services/user.service";
 import { User } from "src/app/models/user";
 import { AuthenticationService } from "src/app/modules/auth/services/authentication.service";

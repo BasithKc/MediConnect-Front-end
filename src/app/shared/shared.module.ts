@@ -4,15 +4,18 @@ import { FirstPageComponent } from "./components/first-page/first-page.component
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { UserService } from "./services/user.service";
+import { SidebarComponent } from "./components/sidebar/sidebar.component";
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FirstPageComponent
+    FirstPageComponent,
+    SidebarComponent
   ],
   exports: [
     HeaderComponent,
-    FirstPageComponent
+    FirstPageComponent,
+    SidebarComponent
   ],
   imports: [
     RouterModule,

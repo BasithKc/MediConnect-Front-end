@@ -5,23 +5,27 @@ import { ConsultVerifyComponent } from "./components/consult/verify/verify-compo
 import { ConsultPaymentComponent } from "./components/consult/payment/payment-component";
 import { videoHomeComponent } from "./components/consult/call-video-chat/home/video-home.component";
 import { VideoRoomComponent } from "./components/consult/call-video-chat/room/room-component";
+import { PatientLayoutComponent } from "./components/layout/patient-layout";
 
 
 const routes :Routes = [
-  {path: '', component: PatientHomeComponent},
-  {
-    path: 'consult/direct',
-    children:[
-      {path: 'new_consultation', component: ConsultVerifyComponent},
-      {path: 'payment', component: ConsultPaymentComponent}
-    ]
-  },
-  {path: 'consult',
-    children:[
-      {path: 'video-home', component: videoHomeComponent},
-      {path: 'video-room/:roomId', component: VideoRoomComponent}
-    ]
-  }
+  {path: '', component: PatientLayoutComponent, children: [
+    {path: '', component: PatientHomeComponent},
+
+    {
+      path: 'consult/direct',
+      children:[
+        {path: 'new_consultation', component: ConsultVerifyComponent},
+        {path: 'payment', component: ConsultPaymentComponent}
+      ]
+    },
+    {path: 'consult',
+      children:[
+        {path: 'video-home', component: videoHomeComponent},
+        {path: 'video-room/:roomId', component: VideoRoomComponent}
+      ]
+    }
+  ]},
 ]
 
 @NgModule({

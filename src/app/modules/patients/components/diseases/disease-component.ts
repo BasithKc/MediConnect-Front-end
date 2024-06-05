@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Diseases } from "../../models/diseases";
+import { Diseases } from "../../../../shared/models/diseases";
 
 @Component({
   selector: 'app-disease-card',
