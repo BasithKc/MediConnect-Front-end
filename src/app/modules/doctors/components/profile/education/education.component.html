@@ -5,41 +5,49 @@
     <div class="w-full">  
         <form class="mt-5" [formGroup]="educationForm" (ngSubmit)="onSubmit()">
           <div >
-            <label for="reg-num">Registration Number</label>
-            <mat-form-field appearance="outline">
-              <input matInput placeholder="Registration number" formControlName="reg_num">
+            <p for="reg-num">Degree</p>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-select formControlName="degree" placeholder="Select degree">
+                <mat-option value="MBS (H)">MBS (H)</mat-option>
+                <mat-option value="MSc.-speech and hearing">MSc.-speech and hearing</mat-option>
+                <mat-option value="Doctorate in Chiropractic">Doctorate in Chiropractic</mat-option>
+              </mat-select>
             </mat-form-field>
-            <!-- <div class="flex mt-2">
-              <input class="border-2 p-2 w-full" type="text" formControlName="reg_num" name="reg-num" id="reg-num" placeholder="Type registration number" required >
-            </div> -->
 
           </div>
 
-          <div class="mt-4 mb-3">
-            <label for="reg-council">Registration Council</label>
+          <div class="mt-1 mb-3">
+            <p for="reg-council">College/Institute</p>
             <div class=" mt-3">
-              <select class=" border-2 p-2 p-2 w-full" formControlName="reg_council" name="reg-council">
-                <option value="" disabled selected>Select registration council</option>
-  
-                <option value="Delhi Medical Council">Delhi Medical Council</option>
-                <option value="Kerala Medical Council">Kerala Medical Council</option>
-              </select>
+              <mat-form-field appearance="outline" class="w-full">
+                <mat-select formControlName="institution" placeholder="Select college/institute">
+                  <mat-option value="Maharani College">Maharani College</mat-option>
+                  <mat-option value="MAHER UNIVERSITY">MAHER UNIVERSITY</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
+          </div>
+
+          <div class="">
+            <p >Year of Completion</p>
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-select formControlName="completionYear" placeholder="Type year of completion" >
+                <mat-option *ngFor="let i of years" [value]="i">{{i}}</mat-option>
+               
+              </mat-select>
+            </mat-form-field>
 
           </div>
 
-          <div class="mt-4 mb-4 pb-[150px] border-b-2">
-            <label for="reg-year">Registration Year</label>
-            <div class="flex mt-2">
-              <select class="border-2 p-2 p-2 w-full" formControlName="reg_year" name="reg-year">
-                <option value="" disabled selected>Select registration council</option>                
-                <option > </option>
-              </select>
-            </div>
+          <div class="pb-[20px] border-b-2">
+            <p >Year of Experience</p>
+            <mat-form-field appearance="outline" class="w-full">
+             <input matInput formControlName="experience" placeholder="Type year of experience (between 0-70 years)">
+            </mat-form-field>
 
           </div>
 
-          <div class="flex justify-between items-center">
+          <div class="flex justify-between items-center mt-2">
             <a [routerLink]="['/partners/onboard/milestone']"><i class='bx bx-left-arrow-alt'></i> Back</a>
             <input type="submit" class="bg-orange-400 text-white rounded-sm p-2 w-[120px] cursor-pointer" value="Next">
           </div>

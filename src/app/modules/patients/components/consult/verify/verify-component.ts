@@ -7,7 +7,7 @@ import { DiseaseService } from "../../../../../shared/services/disease-service";
 import { Diseases } from "../../../../../shared/models/diseases";
 import { UserService } from "src/app/shared/services/user.service";
 import { User } from "src/app/models/user";
-import { AuthenticationService } from "src/app/modules/auth/services/authentication.service";
+import { AuthenticationService } from "src/app/modules/auth/services/auth-http.service";
 
 @Component({
   selector: 'app-consult-verify',

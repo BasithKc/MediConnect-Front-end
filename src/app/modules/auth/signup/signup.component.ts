@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from '../services/auth-http.service';
 import { passwordMatchValidator } from 'src/utils/validator/password-validator';
 
 @Component({
@@ -76,9 +76,9 @@ export class SignupComponent implements OnInit{
           
           //redirect to home page
           if (this.userType === 'Patient') {
-            this.router.navigate(['patients-page'])
+            this.router.navigate(['/'])
           } else {
-            this.router.navigate(['doctors-page'])
+            this.router.navigate(['/partners/onboard/milestone'])
           }
         },
         (error) => {

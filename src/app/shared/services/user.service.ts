@@ -20,6 +20,8 @@ export class UserService {
       const headers = { 'Authorization': `${token}` };
       return this.http.post<User>(`${this.baseUrl}/auth/me`, {headers}).pipe(
         tap((user) => {
+          console.log(user);
+          
           this.userInfoSubject.next(user)
         })
       )

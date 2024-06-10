@@ -2,9 +2,9 @@
 
   <app-header ></app-header> 
   
-    <section class="vh-100 ">
-      <div class="">
-        <div class=" flex items-center justify-center flex-wrap ">
+    <section class="vh-100 mt-10">
+      <div class="relative">
+        <div class=" flex justify-center flex-wrap ">
           <!-- OTP overlay -->
           <div class="fixed top-20 bottom-0 left-0 py-5 right-0 items-center justify-center bg-black bg-opacity-20  z-50" *ngIf="showOtpComponent">
             <app-otp
@@ -13,30 +13,31 @@
             [emailName]="emailName"
             ></app-otp>
           </div>          
-          <div class="md:w-[70%] lg:w-[60%] xl:w-[40%] mb-4 mb-md-0 sm:order-last">
-            <div class="text-center">
+          <div class="md:w-[70%] lg:w-[60%] xl:w-[40%] mb-4 mb-md-0">
+            <div class="text-center flex justify-center flex-col items-center">
               <!-- If the userType is doctor -->
-              <ng-container *ngIf="userType === 'Doctor'; else patientContent">
-                <img class="img-fluid" src="../../assets/images/undraw_Doctors_p6aq.png" alt="">
+              <ng-container *ngIf="userType === 'Doctor'; else patientContent" >
+                <img class="w-[450px] h-[450px]" src="../../assets/images/undraw_Doctors_p6aq.png" alt="">
                 <h2 class="mt-4 font-bold text-3xl">IMPROVE YOUR LIFESTYLE</h2>
                 <p class="text-xl">Striving to improve community health care and practices</p>
                 
               </ng-container>
               <!-- If the userType is patient -->
               <ng-template #patientContent>
-                <img class="img-fluid" src="../../assets/images/undraw_medical_care_movn.png" alt="">
+                <img class="w-[450px] h-[450px]" src="../../assets/images/undraw_medical_care_movn.png" alt="">
                 <h2 class="mt-4 font-bold text-3xl">IMPROVE YOUR LIFESTYLE</h2>
                 <p class="text-xl">Striving to improve community health care and practices</p>
               </ng-template>
             </div>
           </div>
   
-          <div class="md:w-[50%] lg:w-[40%] col-xl-4 offset-xl-1 flex justify-center flex-col items-center bg-blue-600 p-3 rounded-md text-white sm:order-first ">
+          <div class="md:w-[50%] lg:w-[40%]  col-xl-4 offset-xl-1 flex justify-center flex-col items-center bg-blue-600 p-3 rounded-md text-white ">
 
-            <h3 class="mb-4 font-bold text-xl uppercase">Sign up</h3>
+            <a *ngIf="userType==='Patient'" class="text-start" [routerLink]="['/auth/register/Doctor']">Are you a Doctor?<span class="text-red-500">click here </span></a>
+            <a *ngIf="userType==='Doctor'" class="text-start" [routerLink]="['/auth/register/Patient']">Back to users?<span class="text-red-500">click here </span></a>
+            <p class="mb-4 mt-3 font-bold text-xl uppercase">Sign up</p>
             <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="mx-1 mx-md-4">
-              <p class="small fw-bold  mb-2">Already have an account? <a [routerLink]="['/auth/login', userType]"
-                class="text-red-500" >Login</a></p>
+             
 
               <div class="flex flex-row items-center  mb-4">
                 <i class="fas fa-user fa-lg me-3 fa-fw text-black"></i>
@@ -92,7 +93,8 @@
               <div class="flex justify-center mx-4 mb-3 mb-lg-4 text-center ">
                 <button type="submit" [disabled]="signupForm.invalid" class="text-white p-2 rounded-md w-[80%] bg-blue-700 btn-lg" >Register</button>
               </div>
-
+              <p class="small fw-bold  mb-2 text-center">Already have an account? <a [routerLink]="['/auth/login', userType]"
+                class="text-red-500" >Login</a></p>
             </form>
           </div>
         </div>
