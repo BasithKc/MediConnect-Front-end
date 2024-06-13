@@ -11,16 +11,16 @@
       
     </button>
     <div *ngIf="user else loginbutton" class="relative border-2 p-2 cursor-pointer bg-white rounded-lg text-black-500">
-      <p>Hi,{{user.name}}</p>
-      <div  class="absoulte settings  bg-white  w-[250px] h-[230px] text-slate-500">
+      <p (click)="toggleSettings()">Hi,{{user.name}}</p>
+      <div *ngIf="showSettings" class="absoulte settings  bg-white  w-[250px] h-[230px] text-slate-500">
         <div class="border-b-2 w-full p-3 ">
-          <p>{{user?.name}}</p>
+          <p>{{user.name}}</p>
         </div>
-        <div class="border-b-2 w-full p-3 cursor-pointer hover:bg-slate-200">
-          <p class="font-semibold">Switch to consumer products <i class='bx bx-chevron-right'></i></p>
-          <p>Find and book a doctor or lab test, consult with doctors online, store medical records and more</p>
+        <div *ngIf="user.role ==='doctor'" routerLink="/partners/onboard/milestone"class="border-b-2 w-full p-3 cursor-pointer hover:bg-slate-200">
+          <p class="font-semibold">Switch to provider products <i class='bx bx-chevron-right'></i></p>
+          <p>Manage your clinic, answer consult questions, write health articles and more.</p>
         </div>
-        <div class="p-3 cursor-pointer hover:bg-slate-200">
+        <div  class="p-3 cursor-pointer hover:bg-slate-200" (click)="logout()">
           <button>Logout</button>
         </div>
       </div>
@@ -30,7 +30,7 @@
     <ng-template #loginbutton>
 
       <div class="relative border-2 p-2 cursor-pointer bg-white rounded-lg text-black-500 flex items-center justify-center" >
-        <a [routerLink]="['/auth/login', 'Patient']">Login/Signup</a>
+        <a [routerLink]="['/auth/login']">Login/Signup</a>
       </div>
     </ng-template>
     <button data-collapse-toggle="navbar-search" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">

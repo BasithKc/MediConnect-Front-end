@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './components/profile/registration/registration.component';
 import { OnboardingheaderComponent } from './components/layout/onboardingheader/onboardingheader.component';
 import { EducationComponent } from './components/profile/education/education.component';
+import { UserService } from 'src/app/shared/services/user.service';
 
 
 
@@ -35,6 +36,9 @@ import { EducationComponent } from './components/profile/education/education.com
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+  ],
+  providers: [
+    // UserService
   ]
 })
 export class DoctorsModule { }

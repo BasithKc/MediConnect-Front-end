@@ -4,6 +4,7 @@ import { Diseases } from 'src/app/shared/models/diseases';
 import {FormBuilder ,FormGroup, Validators} from "@angular/forms";
 import { FormStateService } from '../../../services/onboard-form-state.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/services/user.service';
 
 
 
@@ -21,9 +22,11 @@ export class OnboardComponent implements OnInit{
     private diseaseService: DiseaseService, 
     private formBuilder: FormBuilder,
     private formStateService: FormStateService,
-    private router: Router) {}
+    private router: Router,
+    private userService: UserService) {}
 
   diseases!: Diseases[]
+  user!: Doctor
 
   ngOnInit(): void {
     this.diseaseService.getDieseases().subscribe(disease => {
@@ -34,6 +37,14 @@ export class OnboardComponent implements OnInit{
       specialization: ['', Validators.required],
       gender: ['', Validators.required]
     })
+
+    //getting the user details
+    this.userService.userInfo$.subscribe(
+      (userInfo: any) => {
+        this.user = userInfo.user
+        
+      }
+    )
   }
   onSubmit() {
     if(this.profileForm.valid) {
@@ -42,4 +53,11 @@ export class OnboardComponent implements OnInit{
       this.router.navigate(['/partners/onboarding/registration'])
     }
   }
+}
+
+interface Doctor {
+  _id: string,
+  name: string,
+  password: string,
+  role: string
 }

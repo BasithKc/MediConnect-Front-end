@@ -1,12 +1,15 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class FormStateService {
+  private formCompletedState = new BehaviorSubject<boolean>(this.getFormCompletedFromStorage());
+  
+  formCompleted$ = this.formCompletedState.asObservable() 
   private formData: any = {}
   private baseUrl = 'http://localhost:5000'//base url for api request 
 
@@ -16,20 +19,24 @@ export class FormStateService {
   // Update the formData object by merging it with the provided data
   updateForm (data: any) {
     // Use the spread operator to create a new object with the combined properties
-    console.log(this.formData);
-    this.formData = {...this.formData, ...data}
-    
+    this.formData = { ...data, ...this.formData}    
   }
 
-  // Return the current formData object
-  getFormData () {
-    return this.formData
+  getFormCompletedFromStorage(): boolean {
+    const formState = localStorage.getItem('formCompleted')
+    return formState ? JSON.parse(formState) : false
+  }
+
+  //function for showing the form submition is completed
+  setFormCompleted(status: boolean) {
+    this.formCompletedState.next(status)
+    localStorage.setItem('formCompleted', JSON.stringify(status))
   }
 
   // Submit the formData to the specified endpoint using HTTP POST
-  submitFormData (endpoint: string): Observable<any> {
-    
+  submitFormData (endpoint: string): Observable<any> {    
     // Construct the full URL by concatenating the base URL with the endpoint
-    return this.http.post(`${this.baseUrl}/${endpoint}`, this.formData)
+    const token = localStorage.getItem('token')
+    return this.http.post(`${this.baseUrl}/${endpoint}`, {formData: this.formData, token})
   }
 }

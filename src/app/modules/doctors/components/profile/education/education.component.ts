@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormGroup , ReactiveFormsModule, FormsModule, FormBuilder, Validators} from '@angular/forms'
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
@@ -28,7 +28,7 @@ export class EducationComponent implements OnInit{
   years: number[] = []
 
  
-  constructor (private fb: FormBuilder, private formStateService: FormStateService) {}
+  constructor (private fb: FormBuilder, private formStateService: FormStateService, private router: Router) {}
 
   ngOnInit(): void { 
     this.educationForm = this.fb.group({
@@ -50,8 +50,16 @@ export class EducationComponent implements OnInit{
   }
 
   onSubmit() {
+    //updating the form data
     if(this.educationForm.valid) {
       this.formStateService.updateForm(this.educationForm.value)
+    //submit the data to backend and save in db
+    this.formStateService.submitFormData('partners/profile/update').subscribe()
+
+    //setting the form is completed
+    this.formStateService.setFormCompleted(true)
     }
+
+    this.router.navigate(['/partners/onboard/milestone'])
   }
 }

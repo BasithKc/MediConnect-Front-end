@@ -11,7 +11,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { ConsultVerifyComponent } from "./components/consult/verify/verify-component";
 import { ConsultPaymentComponent } from "./components/consult/payment/payment-component";
 import { LazyLoadImageModule } from "ng-lazyload-image";
-import { videoHomeComponent } from "./components/consult/call-video-chat/home/video-home.component";
 import { VideoRoomComponent } from "./components/consult/call-video-chat/room/room-component";
 import { PatientLayoutComponent } from "./components/layout/patient-layout";
 
@@ -25,7 +24,6 @@ import { PatientLayoutComponent } from "./components/layout/patient-layout";
     PatientLayoutComponent
   ],
   imports: [
-    videoHomeComponent,
     ConsultPaymentComponent,
     PatinetsRoutingModule,
     CommonModule,

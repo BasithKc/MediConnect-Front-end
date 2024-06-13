@@ -17,20 +17,13 @@ export class SidebarComponent implements OnInit{
 
   toggleSettings() {
     this.settings = !this.settings
-    console.log(this.settings);
     
   }
 
   ngOnInit(): void {
-    this.userService.getUserInfo().subscribe(
-      (res) => {
-        console.log(res);
-        
-      }
-    )
+    this.userService.getUserInfo().subscribe()
     this.userService.userInfo$.subscribe(
       (userInfo: any) => {
-        console.log(userInfo);
         
         this.user = userInfo.user
       },

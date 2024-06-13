@@ -69,8 +69,7 @@ export class ConsultPaymentComponent implements OnInit{
           color: '#f37254'
         },
         handler: (response: any) => {
-          console.log(response);  
-          this.router.navigate([`/consult/video-home`])
+          this.router.navigate([`/consult/video-room`])
         },
         modal: {
           ondismiss: () => {

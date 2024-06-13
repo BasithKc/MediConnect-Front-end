@@ -12,7 +12,7 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
   ],
   exports: [
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
   imports: [
     RouterModule,

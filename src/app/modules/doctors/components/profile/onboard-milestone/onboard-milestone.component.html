@@ -10,7 +10,10 @@
     <p>Your profile is just few steps away from going live.</p>
     <div class="flex flex-col gap-[1px] border-b-2 py-5">  
       <div class="text-sm">Section A: Profile details</div>
-      <div>Doctor’s basic details, medical registration, education qualification, establishment details etc.</div>
+      <div>Doctor’s basic details, medical registration, education qualification</div>
+      <div *ngIf="formCompleted">
+        <button class="bg-orange-400 text-white rounded-sm p-2 w-[150px] mt-2">✔️Change</button>
+      </div>
       <button [routerLink]="['/partners/onboard']" class="bg-orange-400 text-white rounded-sm p-2 w-[150px] mt-2">Continue</button>
     </div>
     <div class="flex flex-col gap-[1px] border-b-2 py-5 text-slate-500">  

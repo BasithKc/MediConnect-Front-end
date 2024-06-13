@@ -24,8 +24,8 @@ export class AuthenticationService {
   }
 
   //function for handling login attempt
-  login (loginForm: LoginData, userType: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/login/${userType}`, loginForm)
+  login (loginForm: LoginData): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/login`, loginForm)
   }
 }
 

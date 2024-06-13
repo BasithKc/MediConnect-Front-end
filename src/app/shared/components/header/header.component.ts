@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -10,8 +11,9 @@ import { UserService } from 'src/app/shared/services/user.service';
 
 export class HeaderComponent implements OnInit{
   user: User | null = null
+  showSettings: boolean = false
   
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private router: Router) {}
 
   ngOnInit(): void {
     this.userService.getUserInfo().subscribe(
@@ -25,5 +27,15 @@ export class HeaderComponent implements OnInit{
       
     })
     
+  }
+
+  toggleSettings() {
+    this.showSettings = !this.showSettings
+  }
+
+  //function for logout
+  logout() {
+    localStorage.clear()
+    this.router.navigate(['/auth/login'])
   }
 }
