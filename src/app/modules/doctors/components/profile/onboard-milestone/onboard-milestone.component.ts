@@ -6,10 +6,10 @@ import { FormStateService } from '../../../services/onboard-form-state.service';
   templateUrl: './onboard-milestone.component.html',
   styleUrls: ['./onboard-milestone.component.css']
 })
-export class OnboardMilestoneComponent implements OnInit{
-  formCompleted = false
-  
-  constructor(private formStateService: FormStateService) {}
+export class OnboardMilestoneComponent implements OnInit {
+  formCompleted!: boolean
+
+  constructor(private formStateService: FormStateService) { }
 
   ngOnInit(): void {
     //if form submition is completed setting formcompleted to true
@@ -17,7 +17,7 @@ export class OnboardMilestoneComponent implements OnInit{
       (status: boolean) => {
         this.formCompleted = status
         console.log(this.formCompleted);
-        
+
       }
     )
   }

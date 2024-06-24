@@ -5,6 +5,7 @@ import { ConsultVerifyComponent } from "./components/consult/verify/verify-compo
 import { ConsultPaymentComponent } from "./components/consult/payment/payment-component";
 import { VideoRoomComponent } from "./components/consult/call-video-chat/room/room-component";
 import { PatientLayoutComponent } from "./components/layout/patient-layout";
+import { DoctorslistComponent } from "./components/consult/doctorslist/doctorslist.component";
 
 
 const routes :Routes = [
@@ -20,6 +21,7 @@ const routes :Routes = [
     },
     {path: 'consult',
       children:[
+        {path: 'doctors-list', component: DoctorslistComponent},
         {path: 'video-room', component: VideoRoomComponent}
       ]
     }

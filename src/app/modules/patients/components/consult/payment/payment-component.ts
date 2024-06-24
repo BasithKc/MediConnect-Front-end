@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { Router } from "@angular/router";
-import { User } from "src/app/models/user";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Diseases } from "src/app/shared/models/diseases";
 import { UserService } from "src/app/shared/services/user.service";
 
 
@@ -25,12 +25,15 @@ declare var Razorpay: any
 export class ConsultPaymentComponent implements OnInit{
  
   paymentForm!: FormGroup
-  user!: User
- 
+  user: any
+  disease!: Diseases | null
+  id!: number
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     this.paymentForm = this.formBuilder.group({
       name: ['', Validators.required]
@@ -38,10 +41,18 @@ export class ConsultPaymentComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    //extracting the id
+    this.route.queryParams.subscribe(
+      (query) => {
+        this.id = query['id']
+        console.log(this.id);
+        
+      }
+    )
     //save the user details
     this.userService.userInfo$.subscribe(
       (userInfo: any)=> {
-        this.user = userInfo.user
+        this.user = userInfo?.user
       },
       (error) => {
         console.log(error);
@@ -69,7 +80,9 @@ export class ConsultPaymentComponent implements OnInit{
           color: '#f37254'
         },
         handler: (response: any) => {
-          this.router.navigate([`/consult/video-room`])
+          this.router.navigate([`/consult/doctors-list`], {
+            queryParams: { id: this.id }
+          })
         },
         modal: {
           ondismiss: () => {
