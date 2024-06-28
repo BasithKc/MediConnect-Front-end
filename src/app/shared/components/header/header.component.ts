@@ -15,11 +15,7 @@ export class HeaderComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.userService.getUserInfo().subscribe(
-      (res) => {
-        console.log('successull');
-      }
-    )
+    this.userService.getUserInfo().subscribe()
     //get the user details
     this.userService.userInfo$.subscribe((userInfo: any) => {
       this.user = userInfo?.user

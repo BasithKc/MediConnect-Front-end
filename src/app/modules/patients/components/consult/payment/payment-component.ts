@@ -80,7 +80,7 @@ export class ConsultPaymentComponent implements OnInit{
           color: '#f37254'
         },
         handler: (response: any) => {
-          this.router.navigate([`/consult/doctors-list`], {
+          this.router.navigate([`/consult/doctors`], {
             queryParams: { id: this.id }
           })
         },

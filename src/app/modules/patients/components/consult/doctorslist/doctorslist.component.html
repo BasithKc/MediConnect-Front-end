@@ -1,52 +1,18 @@
 <section class="lg:px-[100px] sm:px-[20px] p-10 bg-gray-100 w-full h-full flex justify-center">
   <div class="flex items-center justify-between bg-white p-2 sm:w-full lg:w-[75%] ">
-    <div class="lg:w-[50%] sm:w-full flex flex-col items-center gap-3 p-2 border-r-2">
+    <div class="lg:w-[50%] sm:w-full flex flex-col items-center justify-start gap-3 p-2 border-r-2">
       <div class="font-medium text-lg text-center">{{disease?.name}} </div>
-      <div class="bg-gray-100 rounded-lg p-2 w-full grid gap-4 grid-cols-4 grid-rows-2 cursor-pointer" (click)="showDetails()">
+
+      <div *ngFor="let doctor of doctorsList" class="bg-gray-100 rounded-lg p-2 w-full grid gap-4 grid-cols-4 grid-rows-2 cursor-pointer" (click)="showDetails()" [routerLink]="['/consult/doctors/', doctor._id]">
         <img src="../../../../../../assets/images/doctor-profile-with-medical-service-icon_617655-48.avif"  class="rounded-full w-[50px] row-span-2">
         <div class="font-semibold col-span-3">
-          <p >Dr. Alexa Sherma</p>
+          <p >Dr. {{doctor.name}}</p>
         </div>
         <div class="col-span-2">
           <p >⭐⭐⭐⭐⭐ 5</p>
         </div>
       </div>
-      <div class="bg-gray-100 rounded-lg p-2 w-full grid gap-4 grid-cols-4 grid-rows-2 cursor-pointer">
-        <img src="../../../../../../assets/images/doctor-profile-with-medical-service-icon_617655-48.avif"  class="rounded-full w-[50px] row-span-2">
-        <div class="font-semibold col-span-3">
-          <p >Dr. Alexa Sherma</p>
-        </div>
-        <div class="col-span-2">
-          <p >⭐⭐⭐⭐⭐ 5</p>
-        </div>
-      </div>
-      <div class="bg-gray-100 rounded-lg p-2 w-full grid gap-4 grid-cols-4 grid-rows-2 cursor-pointer">
-        <img src="../../../../../../assets/images/doctor-profile-with-medical-service-icon_617655-48.avif"  class="rounded-full w-[50px] row-span-2">
-        <div class="font-semibold col-span-3">
-          <p >Dr. Alexa Sherma</p>
-        </div>
-        <div class="col-span-2">
-          <p >⭐⭐⭐⭐⭐ 5</p>
-        </div>
-      </div>
-      <div class="bg-gray-100 rounded-lg p-2 w-full grid gap-4 grid-cols-4 grid-rows-2 cursor-pointer">
-        <img src="../../../../../../assets/images/doctor-profile-with-medical-service-icon_617655-48.avif"  class="rounded-full w-[50px] row-span-2">
-        <div class="font-semibold col-span-3">
-          <p >Dr. Alexa Sherma</p>
-        </div>
-        <div class="col-span-2">
-          <p >⭐⭐⭐⭐⭐ 5</p>
-        </div>
-      </div>
-      <div class="bg-gray-100 rounded-lg p-2 w-full grid gap-4 grid-cols-4 grid-rows-2 cursor-pointer">
-        <img src="../../../../../../assets/images/doctor-profile-with-medical-service-icon_617655-48.avif"  class="rounded-full w-[50px] row-span-2">
-        <div class="font-semibold col-span-3">
-          <p >Dr. Alexa Sherma</p>
-        </div>
-        <div class="col-span-2">
-          <p >⭐⭐⭐⭐⭐ 5</p>
-        </div>
-      </div>
+     
     </div>
 
     <div class="lg:block sm:hidden sm:hidden lg:flex lg:w-[50%] ">
@@ -59,41 +25,9 @@
 
       </div>
       <ng-template #detailsDiv class="flex items-start">
-        <div class="p-4 w-full">
-          <p class="text-center font-medium text-xl mb-[50px]">Doctor's Details</p>
-          <div class="grid gap-4 grid-cols-4 grid-rows-2 justify-center justify-items-start mt-[50px]">
-            <img class="rounded-md w-[60px] row-span-2  justify-self-end" src="../../../../../../assets/images/doctor-profile-with-medical-service-icon_617655-48.avif" alt="">
-            <p class="col-span-2 font-semibold">Dr. Alexa Sherma</p>
-            <p class="col-span-2 font-medium">Heart Specialist</p>
-          </div>
-          <div>
-            <div class="flex justify-between">
-              <p>Date</p>
-              <p>June</p>
-            </div>
-            <div class="flex justify-between mb-[20px]">
-              <div *ngFor="let date of dates" class="bg-[#f0f0f0] p-4 rounded-lg text-center cursor-pointer"
-              [class.selectedDate]="date === selectedDate "
-              (click)="selectDate(date)">
-              
-                <div> {{getDayByName(date)}} </div>
-                <div> {{getDate(date)}} </div>
-              </div>
-            </div>
-            <p class="mt-[20px]">TIME</p>
-            <div class="flex justify-between mb-[20px]">
-              <div *ngFor="let time of times" class="bg-[#f0f0f0] p-4 rounded-lg text-center hover:outline-2 outline-black cursor-pointer"
-              [class.selectedTime]="time === selectedTimeSlot"
-              (click)="selectTimeSlot(time)"
-              >
-                {{time}}
-              </div>
-            </div>
-            <button (click)="onDone()" class="block w-full p-4 bg-[#00ffcc] rounded-md text-black font-semibold cursor-pointer"
-            [disabled]="!selectedDate && !selectedTimeSlot">Done</button>
-          </div>
-        </div>
+        <router-outlet></router-outlet>        
       </ng-template>
     </div>
+   
   </div>
 </section>
