@@ -15,6 +15,7 @@ import { VideoRoomComponent } from "./components/consult/call-video-chat/room/ro
 import { PatientLayoutComponent } from "./components/layout/patient-layout";
 import { DoctorslistComponent } from './components/consult/doctorslist/doctorslist.component';
 import { TakeAppointmentComponent } from "./components/consult/takeAppointment/tak-appointment.component";
+import { AppointmentsComponent } from './components/appointments/appointments.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { TakeAppointmentComponent } from "./components/consult/takeAppointment/t
     VideoRoomComponent,
     PatientLayoutComponent,
     DoctorslistComponent,
-    TakeAppointmentComponent
+    TakeAppointmentComponent,
+    AppointmentsComponent
   ],
   imports: [
     ConsultPaymentComponent,

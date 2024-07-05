@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ConsultHttpService } from "../../../services/consult-http.service";
 
 @Component({
@@ -19,7 +19,7 @@ export class TakeAppointmentComponent implements OnInit{
   doctor: any
   userToken: string | null = null
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private consultService: ConsultHttpService) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute, private consultService: ConsultHttpService, private router: Router) {}
 
   ngOnInit(): void {
     this.generateDates()
@@ -73,6 +73,7 @@ export class TakeAppointmentComponent implements OnInit{
     this.showSuccesMsg = true
     setTimeout( () => {
       this.showSuccesMsg= false
+      this.router.navigate(['/appointments'])
     }, 3000)
 
     //creating an  appointment from backend

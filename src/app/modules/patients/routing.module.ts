@@ -7,6 +7,7 @@ import { VideoRoomComponent } from "./components/consult/call-video-chat/room/ro
 import { PatientLayoutComponent } from "./components/layout/patient-layout";
 import { DoctorslistComponent } from "./components/consult/doctorslist/doctorslist.component";
 import { TakeAppointmentComponent } from "./components/consult/takeAppointment/tak-appointment.component";
+import { AppointmentsComponent } from "./components/appointments/appointments.component";
 
 
 const routes :Routes = [
@@ -29,7 +30,8 @@ const routes :Routes = [
         },
         {path: 'video-room', component: VideoRoomComponent}
       ]
-    }
+    },
+    {path: 'appointments', component: AppointmentsComponent}
   ]},
 ]
 
