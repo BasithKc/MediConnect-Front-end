@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Diseases } from "../models/diseases";
+import { Diseases } from "../../../shared/models/diseases";
 import { Observable } from "rxjs";
 import { ConsultForm } from "../models/consult-form";
 

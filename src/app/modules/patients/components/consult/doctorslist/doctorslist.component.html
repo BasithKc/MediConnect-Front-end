@@ -1,0 +1,33 @@
+<section class="lg:px-[100px] sm:px-[20px] p-10 bg-gray-100 w-full h-full flex justify-center">
+  <div class="flex items-center justify-between bg-white p-2 sm:w-full lg:w-[75%] ">
+    <div class="lg:w-[50%] sm:w-full flex flex-col items-center justify-start gap-3 p-2 border-r-2">
+      <div class="font-medium text-lg text-center">{{disease?.name}} </div>
+
+      <div *ngFor="let doctor of doctorsList" class="bg-gray-100 rounded-lg p-2 w-full grid gap-4 grid-cols-4 grid-rows-2 cursor-pointer" (click)="showDetails()" [routerLink]="['/consult/doctors/', doctor._id]">
+        <img src="../../../../../../assets/images/doctor-profile-with-medical-service-icon_617655-48.avif"  class="rounded-full w-[50px] row-span-2">
+        <div class="font-semibold col-span-3">
+          <p >Dr. {{doctor.name}}</p>
+        </div>
+        <div class="col-span-2">
+          <p >⭐⭐⭐⭐⭐ 5</p>
+        </div>
+      </div>
+     
+    </div>
+
+    <div class="lg:block sm:hidden sm:hidden lg:flex lg:w-[50%] ">
+      <div *ngIf="showAdContent else detailsDiv"class="flex flex-col items-center justify-center text-center">
+        <div class="flex justify-center"> 
+          <img src="../../../../../../assets/images/ic-chats-v1.webp" alt="">
+        </div>
+        <p class="font-bold text-lg">Select a doctor for consulting</p>
+        <p class="text-md w-[50%]">Verified and experienced doctors are available in Medi connect</p>
+
+      </div>
+      <ng-template #detailsDiv class="flex items-start">
+        <router-outlet></router-outlet>        
+      </ng-template>
+    </div>
+   
+  </div>
+</section>

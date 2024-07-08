@@ -1,0 +1,65 @@
+#sidebar .side-menu li.active {
+  background: #fffefe42;
+  position: relative;
+}
+
+#sidebar .side-menu.top li a:hover {
+  color: #3c91e6;
+}
+#sidebar .side-menu li a .bx {
+  min-width: calc(60px - ((4px + 6px) * 2));
+  display: flex;
+  justify-content: center;
+}
+
+#content {
+  box-shadow: 2px 2px 5px grey;
+}
+#content nav::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  bottom: -40px;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: -20px -20px 0 #f9f9f9;
+}
+#content nav a {
+  color: #342e37;
+}
+#content nav .notification .num {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid lightblue;
+  background: red;
+  color: lightblue;
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#content nav .profile img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#sidebar {
+  z-index: 2;
+}
+#content {
+  z-index: 1;
+}
+
+#content .settings {
+  position: absolute;
+  right: 50px;
+  top: 70px;
+}

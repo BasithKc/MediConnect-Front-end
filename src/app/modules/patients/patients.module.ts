@@ -6,19 +6,28 @@ import { AuthModule } from "../auth/auth.module";
 import { SharedModule } from "src/app/shared/shared.module";
 import { PatinetsRoutingModule } from "./routing.module";
 import { provideClientHydration } from "@angular/platform-browser";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { ConsultVerifyComponent } from "./components/consult/verify/verify-component";
 import { ConsultPaymentComponent } from "./components/consult/payment/payment-component";
 import { LazyLoadImageModule } from "ng-lazyload-image";
+import { VideoRoomComponent } from "./components/consult/call-video-chat/room/room-component";
+import { PatientLayoutComponent } from "./components/layout/patient-layout";
+import { DoctorslistComponent } from './components/consult/doctorslist/doctorslist.component';
+import { TakeAppointmentComponent } from "./components/consult/takeAppointment/tak-appointment.component";
+import { AppointmentsComponent } from './components/appointments/appointments.component';
 
 
 @NgModule({
   declarations:[
-    // components
     PatientHomeComponent,
     DiseaseComponent,
     ConsultVerifyComponent,
+    VideoRoomComponent,
+    PatientLayoutComponent,
+    DoctorslistComponent,
+    TakeAppointmentComponent,
+    AppointmentsComponent
   ],
   imports: [
     ConsultPaymentComponent,
@@ -29,6 +38,7 @@ import { LazyLoadImageModule } from "ng-lazyload-image";
     ReactiveFormsModule,
     HttpClientModule,
     LazyLoadImageModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration(),

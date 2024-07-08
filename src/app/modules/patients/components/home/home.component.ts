@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Diseases } from "../../models/diseases";
-import { DiseaseService } from "src/app/modules/patients/services/disease-service";
+import { Diseases } from "../../../../shared/models/diseases";
+import { DiseaseService } from "src/app/shared/services/disease-service";
 
 @Component({
   selector: 'app-patient-home',

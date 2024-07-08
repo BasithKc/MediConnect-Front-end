@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordMatchValidator } from '../../../../utils/validator/password-validator';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from '../services/auth-http.service';
 
 @Component({
   selector: 'app-login',
@@ -25,10 +25,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
       
-    //Subscribing to params to retrieve the type of user
-    this.route.params.subscribe(params => {  
-      this.userType= params['userType'] as 'Doctor' | 'Patient'
-    })
+   
 
     // Form validation using formBuilder
     this.loginForm = this.formBuilder.group({
@@ -39,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(this.loginForm.value, this.userType)
+    this.authService.login(this.loginForm.value)
       .subscribe(
         response => {
           //Handle successfull login
@@ -52,7 +49,7 @@ export class LoginComponent implements OnInit {
             this.userId = response.userId
             this.showOtpComponent = true
           }
-          this.router.navigate([`/home/${this.userType}`])
+          this.router.navigate([`/`])
         },
         error => {
           console.error(error);
@@ -87,11 +84,9 @@ export class LoginComponent implements OnInit {
           this.showOtpComponent = false //removing the otp component from the view
           
           //redirect to home page
-          if (this.userType === 'Patient') {
-            this.router.navigate([`/home/${this.userType}`])
-          } else {
-            this.router.navigate([`/home/${this.userType}`])
-          }
+          
+            this.router.navigate([`/`])
+          
         },
         (error) => {
           //Handle OTP  verification error

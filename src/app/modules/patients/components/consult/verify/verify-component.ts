@@ -3,27 +3,26 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { VerifyService } from "../../../services/verify.service";
-import { DiseaseService } from "../../../services/disease-service";
-import { Diseases } from "../../../models/diseases";
+import { DiseaseService } from "../../../../../shared/services/disease-service";
+import { Diseases } from "../../../../../shared/models/diseases";
 import { UserService } from "src/app/shared/services/user.service";
-import { User } from "src/app/models/user";
-import { AuthenticationService } from "src/app/modules/auth/services/authentication.service";
+import { AuthenticationService } from "src/app/modules/auth/services/auth-http.service";
 
 @Component({
   selector: 'app-consult-verify',
   templateUrl: './verify-component.html'
 })
 
-export class ConsultVerifyComponent implements OnInit{
+export class ConsultVerifyComponent implements OnInit {
   currentIndex = 0;
-  consultForm! : FormGroup
-  user!: User | null;
+  consultForm!: FormGroup
+  user!: any
   disease!: Diseases | null
   id!: string
   emailName!: string
   userId!: string
 
-  showOtpComponent:boolean = false
+  showOtpComponent: boolean = false
 
   //divs of changing banners in the template
   divs = [
@@ -40,7 +39,7 @@ export class ConsultVerifyComponent implements OnInit{
       text: 'Private & Secure'
     }
   ]
-  
+
   constructor(
     private route: ActivatedRoute,
     private diseaseService: DiseaseService,
@@ -52,19 +51,19 @@ export class ConsultVerifyComponent implements OnInit{
   ) {
     setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.divs.length
-    },2000)
+    }, 2000)
   }
 
 
 
- //access the disease using id
- ngOnInit(): void {
-  //extracting the id from queryparams
-    this.route.queryParams.subscribe((query) => { 
+  //access the disease using id
+  ngOnInit(): void {
+    //extracting the id from queryparams
+    this.route.queryParams.subscribe((query) => {
       this.id = query['id']
-      
-     this.disease =  this.diseaseService.getDiseaseById(Number(this.id))
-     
+
+      this.disease = this.diseaseService.getDiseaseById(Number(this.id))
+
     })
 
     //Creating a form validation 
@@ -72,31 +71,29 @@ export class ConsultVerifyComponent implements OnInit{
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
     })
-    
-    this.userService.userInfo$.subscribe(userInfo => {
-      this.user = userInfo
-      console.log(this.user);
-      
+
+    //get the existing user details if exist
+    this.userService.userInfo$.subscribe((userInfo: any) => {
+      this.user = userInfo?.user
+
     })
-  
+
   }
 
   //on clicking on continue to payment button
   onSubmit() {
-
-    if(this.user) {
+    //if user already login, then go to payment page
+    if (this.user) {
       this.router.navigate(['/consult/direct/payment'], {
-        queryParams: {id: this.id }
+        queryParams: { id: this.id }
       })
 
     } else {
-      this.showOtpComponent = true    
+      this.showOtpComponent = true
       // sending a request to backend for number verification
       this.verifyService.verifyEmail(this.consultForm.value, this.disease).subscribe(
         (response) => {
           this.userId = response.userId
-          console.log('successfull');
-          
         },
         (error) => {
           console.log(error)
@@ -117,18 +114,38 @@ export class ConsultVerifyComponent implements OnInit{
     this.authService.verifyOtp(otpValue, this.userId)
       .subscribe(
         (response) => {
+          console.log(response);
+
           //Handle successfull otp verification
           const jwtToken = response.token //server returns a jwt token          
           localStorage.setItem('token', jwtToken)//setting jwt token in local storage for subsequent request authentication
+
+          //updating the user info
+          this.userService.getUserInfo().subscribe(
+            res => {
+              console.log('user updated');
+
+            }
+          )
+          //get the user details
+          this.userService.userInfo$.subscribe((userInfo: any) => {
+            this.user = userInfo.user
+
+          })
+
           this.showOtpComponent = false //removing the otp component from the view
 
+          //navigating to the payment page after verifying successfull
+          this.router.navigate(['/consult/direct/payment'], {
+            queryParams: { id: this.id }
+          })
         },
         (error) => {
           //Handle OTP  verification error
           alert('Wrong OTP Entered')
-        } 
+        }
       )
-  
-  
+
+
   }
 }

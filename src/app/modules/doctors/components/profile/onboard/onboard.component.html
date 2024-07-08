@@ -1,0 +1,65 @@
+<div class="pl-[70px] p-[30px] bg-[#eee] border-b-2 border-black">
+
+  <p class="text-3xl ">Profile</p>
+</div>
+
+<div class="pl-[110px] p-[50px] flex">
+  <div class="lg:w-[30%] sm:w-[100%] text-[16px]">
+
+    <p class="text-3xl font-semibold">Hello Dr. {{user.name}}! Lets build your dedicated profile.</p>
+    <div class="flex flex-col gap-[1px] py-5">  
+      <div class="text-sm">Section A: Profile details</div>
+      <div>
+        <form class="mt-5" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div >
+            <label for="name">Name</label>
+            <div class="flex mt-2">
+              <div class="p-2 border-2 flex items-center justify-center ">
+                <div >Dr./Mr./Ms.</div>
+              </div>
+              <input class="border-2 p-2 lg:w-[80%] sm:w-[60%]" type="text" formControlName="name" name="name" id="name" placeholder="Enter your name" required >
+            </div>
+
+          </div>
+
+          <div class="mt-3 mb-3">
+            <label for="Specialization">Specialization</label>
+            <div class="flex mt-2">
+              <select class="lg:w-full sm:w-[70%] border-2 p-2" formControlName="specialization" name="specialization">
+                <option value="" disabled selected>Select Specialization</option>
+  
+                <option *ngFor="let disease of diseases" [value]="disease.name">{{ disease.name }}</option>
+              </select>
+            </div>
+
+          </div>
+
+          <label  for="gender">Gender</label><br>
+          <div class="flex gap-10 items-center mt-2 mb-5">
+            <div class="flex items-center">
+              <input class="w-[20px] h-[20px] mr-2" type="radio" formControlName="gender" name="gender" value="male">
+              <label for="" class="mr-5 text-md">Male</label>
+            </div>
+
+            <div class="flex items-center">              
+              <input type="radio" formControlName="gender" value="female" class="w-[20px] h-[20px] mr-2" name="gender">
+              <label for="" class="mr-5 text-md">Female</label>
+            </div>
+
+            <div class="flex items-center">
+              <input type="radio" formControlName="gender" class="w-[20px] h-[20px] mr-2" value="other" name="gender">
+              <label for="" class="text-md">Other</label>
+
+            </div>
+
+          </div>
+          <button type="submit" class="bg-orange-400 text-white rounded-sm p-2 lg:w-full sm:w-[70%]">Continue</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="lg:w-[70%] lg:flex sm:hidden flex items-center justify-center" >
+    <img class="w-3/4" src="../../../../../assets/images/doctor_details.webp" alt="">
+  </div>
+</div>

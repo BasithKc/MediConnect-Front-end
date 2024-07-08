@@ -1,8 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Diseases } from "src/app/shared/models/diseases";
+import { UserService } from "src/app/shared/services/user.service";
 
+
+//razorpay
 declare var Razorpay: any
 
 @Component({
@@ -14,23 +19,47 @@ declare var Razorpay: any
     MatButtonModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    FormsModule
   ],
 })
 
 export class ConsultPaymentComponent implements OnInit{
  
   paymentForm!: FormGroup
- 
+  user: any
+  disease!: Diseases | null
+  id!: number
+
   constructor(
     private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     this.paymentForm = this.formBuilder.group({
       name: ['', Validators.required]
     })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //extracting the id
+    this.route.queryParams.subscribe(
+      (query) => {
+        this.id = query['id']
+        console.log(this.id);
+        
+      }
+    )
+    //save the user details
+    this.userService.userInfo$.subscribe(
+      (userInfo: any)=> {
+        this.user = userInfo?.user
+      },
+      (error) => {
+        console.log(error);
+        
+      }
+    )
+  }
 
   //after clicking on continue to payment button
   paymentSubmit () {
@@ -51,8 +80,9 @@ export class ConsultPaymentComponent implements OnInit{
           color: '#f37254'
         },
         handler: (response: any) => {
-          console.log(response);
-          
+          this.router.navigate([`/consult/doctors`], {
+            queryParams: { id: this.id }
+          })
         },
         modal: {
           ondismiss: () => {
@@ -62,11 +92,12 @@ export class ConsultPaymentComponent implements OnInit{
         },
       }
 
+      //call back function for success payment
       const successCallback = (paymentId: any) => {
         console.log(paymentId);
         
       }
-
+      //call back function for failure payment
       const failureCallback = (e: any) => {
         console.log(e);
         
@@ -76,5 +107,6 @@ export class ConsultPaymentComponent implements OnInit{
 
     }
   }
- 
+
+  
 }

@@ -1,10 +1,11 @@
 <section class="px-3 relative">
+  <app-header ></app-header> 
 
   <section class="vh-100 mt-10">
     <div class="relative ">
       <div class="flex  justify-center flex-wrap">
           <!-- OTP overlay -->
-          <div class="fixed top-20 bottom-0 left-0 py-5 bottom-0  flex items-center justify-center bg-black bg-opacity-20  z-50" *ngIf="showOtpComponent">
+          <div class="fixed top-20 bottom-0 left-0 py-5 right-0 bottom-0  flex items-center justify-center bg-black bg-opacity-20  z-50" *ngIf="showOtpComponent">
             <app-otp
             (otpCancelled)="onOtpClose($event)"
             (otpSubmited)="onOtpSubmitted($event)"
@@ -12,18 +13,18 @@
             ></app-otp>
           </div>
 
-        <div class="md:w-[70%] lg:w-[60%] xl:w-[40%] mb-4 mb-md-0">
-          <div class="text-center">
+        <div class="md:w-[70%] lg:w-[60%] xl:w-[40%] mb-4 mb-md-0 ">
+          <div class="text-center flex justify-center flex-col items-center">
             <!-- If the userType is doctor -->
             <ng-container *ngIf="userType === 'Doctor'; else patientContent">
-              <img class="img-fluid" src="../../assets/images/undraw_Doctors_p6aq.png" alt="">
+              <img class="w-[450px] h-[450px]" src="../../assets/images/undraw_Doctors_p6aq.png" alt="">
               <h2 class="mt-4 font-bold text-3xl">IMPROVE YOUR LIFESTYLE</h2>
               <p class="text-xl">Striving to improve community health care and practices</p>
               
             </ng-container>
             <!-- If the userType is patient -->
             <ng-template #patientContent>
-              <img class="img-fluid" src="../../assets/images/undraw_medical_care_movn.png" alt="">
+              <img class="w-[450px] h-[450px]" src="../../assets/images/undraw_medical_care_movn.png" alt="">
               <h2 class="mt-4 font-bold text-3xl">IMPROVE YOUR LIFESTYLE</h2>
               <p class="text-xl">Striving to improve community health care and practices</p>
             </ng-template>
@@ -31,7 +32,8 @@
         </div>
 
         <div class="md:w-[50%] lg:w-[40%] col-xl-4 offset-xl-1 flex justify-center flex-col items-center bg-blue-600 p-3 rounded-md text-white">
-          <h3 class=" mb-4 font-bold text-xl uppercase">{{userType}} Login</h3>                
+    
+          <p class=" mb-4 font-bold text-xl uppercase">Login</p>                
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">    
   
     
@@ -72,7 +74,7 @@
                 <button type="submit" class="text-white p-2 rounded-md w-[80%] bg-blue-700 btn-lg"
                   style="padding-left: 2.5rem; padding-right: 2.5rem;" [disabled]="loginForm.invalid" >Login</button>
                   <p class="text-red-500 text-center">{{errorMsg}}</p>
-                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a [routerLink]="['/auth/register', userType]"
+                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a [routerLink]="['/auth/register', 'Patient']"
                     class="text-red-500" >Register</a></p>
               </div>
     
