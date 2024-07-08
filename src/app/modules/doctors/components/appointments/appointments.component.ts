@@ -5,7 +5,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
-  styleUrls: ['./appointments.component.css']
+  styleUrls: ['./appointments.component.css'],
 })
 export class AppointmentsComponent implements OnInit{
   appointments: any

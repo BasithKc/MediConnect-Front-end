@@ -8,6 +8,7 @@ import { PatientLayoutComponent } from "./components/layout/patient-layout";
 import { DoctorslistComponent } from "./components/consult/doctorslist/doctorslist.component";
 import { TakeAppointmentComponent } from "./components/consult/takeAppointment/tak-appointment.component";
 import { AppointmentsComponent } from "./components/appointments/appointments.component";
+import { AuthGuard } from "src/app/services/auth.guard";
 
 
 const routes :Routes = [
@@ -22,6 +23,7 @@ const routes :Routes = [
       ]
     },
     {path: 'consult',
+      canActivate:[AuthGuard],
       children:[
         {path: 'doctors', component: DoctorslistComponent,
           children:[
@@ -31,7 +33,9 @@ const routes :Routes = [
         {path: 'video-room', component: VideoRoomComponent}
       ]
     },
-    {path: 'appointments', component: AppointmentsComponent}
+    {path: 'appointments', 
+      canActivate:[AuthGuard],
+      component: AppointmentsComponent}
   ]},
 ]
 
